@@ -2,16 +2,15 @@
     #BusquedaComponent
         section
             b-field(style="color: white;")
-                <p class="content"><b>Selected:</b> {{ selected }}</p>
-                b-autocomplete(rounded v-model='name' :data='filteredDataArray' placeholder='...' icon='magnify' clearable @select='option => selected = option')
+                b-autocomplete(rounded v-model='name' :data='filteredDataArray' placeholder='...' icon='magnify' clearable @select='option => getSelectCategory(option.id)')
 </template>
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 export default {
     data() {
         return {
+            selected: null,
             name: '',
-            selected: null
         }
     },
     computed: {
@@ -21,6 +20,9 @@ export default {
                 return option.name.toString().toLowerCase().indexOf(this.name.toLowerCase()) >= 0
             })
         }
+    },
+    methods:{
+        ...mapActions(["getSelectCategory"]),
     }
 }
 </script>

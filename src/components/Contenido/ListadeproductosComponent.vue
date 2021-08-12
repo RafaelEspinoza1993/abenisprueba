@@ -1,10 +1,10 @@
 <template lang="pug">
     #ListadeproductosComponent
         .title.is-size-4.has-text-left Category
-        .subtitle.is-size-5.has-text-left Home > {{ categoryselect.name }}
+        .subtitle.is-size-5.has-text-left Home > {{ categoryselect != null ?  categoryselect.name : ""}}
         .columns.is-multiline
             .column.is-3(v-for="product in products")
-                .card(v-if="product.category.id == categoryselect.id ? true : false")
+                .card(v-if="categoryselect != null ? product.category.id == categoryselect.id ? true : false : true")
                     .card-image.boxprincipal(@click="DetailProduct(product.id)")
                         figure.image.is-square
                             img(:src='product.photo')
