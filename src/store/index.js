@@ -55,7 +55,7 @@ export default new Vuex.Store({
     async getProduct({commit}){
       commit("setLoading", true)   
       axios
-      .get('https://sva.talana.com:8000/api/product/?format=json')
+      .get('http://sva.talana.com:8000/api/product/?format=json')
         .then(response => {
           commit("setProduct", response.data)      
         }).catch(error => {
@@ -66,7 +66,7 @@ export default new Vuex.Store({
     async getCategoryProduct({commit}){
       commit("setLoading", true)   
       axios
-      .get('https://sva.talana.com:8000/api/product-category/?format=json')
+      .get('http://sva.talana.com:8000/api/product-category/?format=json')
         .then(response => {
           commit("setCategoryProduct", response.data)      
         }).catch(error => {
