@@ -1,35 +1,28 @@
 <template lang="pug">
     #CategoriasComponent
-        b-collapse.card(animation='slide' v-for='(collapse, index) of collapses' :key='index' :open='isOpen == index' @open='isOpen = index')
+        b-collapse.card(animation='slide' v-for='(category, index) of categorys' :key='index' :open='isOpen == index' @open='isOpen = index' )
             template(#trigger='props')
-                .card-header(role='button')
+                .card-header(role='button' @click='SelectCategory(category.id)')
                     p.card-header-title
-                        | {{ collapse.title }}
+                        | {{ category.name }}
                     a.card-header-icon
-                        b-icon(:icon="props.open ? 'menu-down' : 'menu-up'")
-            .card-content
-                .content
-                    | {{ collapse.text }}
+                        b-icon(:icon="props.open ? 'menu-right' : 'dog'")
 </template>
 <script>
+import { mapState,mapActions } from 'vuex'
 export default {
     data() {
         return {
             isOpen: 0,
-            collapses: [
-            {
-                title: 'Title 1',
-                text: 'Text 1'
-            },
-            {
-                title: 'Title 2',
-                text: 'Text 2'
-            },
-            {
-                title: 'Title 3',
-                text: 'Text 3'
-            }
-            ]
+        }
+    },
+    computed: {
+        ...mapState(["categorys"]),
+    },
+    methods:{
+        ...mapActions(["getSelectCategory"]),
+        SelectCategory(category){
+            this.getSelectCategory(category)
         }
     }
 }

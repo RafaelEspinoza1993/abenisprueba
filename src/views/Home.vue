@@ -22,7 +22,7 @@ import CarritoComponent from '@/components/Menusuperior/CarritoComponent.vue'
 import CategoriasComponent from '@/components/Menulateral/CategoriasComponent.vue'
 import LogoComponent from '@/components/Menulateral/LogoComponent.vue'
 import ListadeproductosComponent from '@/components/Contenido/ListadeproductosComponent.vue'
-import { mapState} from 'vuex'
+import { mapState, mapActions} from 'vuex'
 
 export default {
   name: 'Home',
@@ -34,8 +34,13 @@ export default {
     LogoComponent,
   },
   computed: {
-      ...mapState(["loading"])
-  },  
+    ...mapState(["loading"]),
+    ...mapActions(["getProduct", "getCategoryProduct"])
+  },
+  mounted() {
+      this.getProduct
+      this.getCategoryProduct
+  },
 }
 </script>
 <style lang="scss">
