@@ -1,0 +1,41 @@
+<template lang="pug">
+    #BusquedaComponent
+        section
+            b-field
+                b-autocomplete(rounded v-model='name' :data='filteredDataArray' placeholder='e.g. jQuery' icon='magnify' clearable @select='option => selected = option')
+                template(#empty) No results found
+</template>
+<script>
+export default {
+    data() {
+        return {
+            data: [
+                'Angular',
+                'Angular 2',
+                'Aurelia',
+                'Backbone',
+                'Ember',
+                'jQuery',
+                'Meteor',
+                'Node.js',
+                'Polymer',
+                'React',
+                'RxJS',
+                'Vue.js'
+            ],
+            name: '',
+            selected: null
+        }
+    },
+    computed: {
+        filteredDataArray() {
+            return this.data.filter((option) => {
+                return option
+                    .toString()
+                    .toLowerCase()
+                    .indexOf(this.name.toLowerCase()) >= 0
+            })
+        }
+    }
+}
+</script>
