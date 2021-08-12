@@ -1,10 +1,10 @@
 <template lang="pug">
     #ListadeproductosComponent
         .title.is-size-4.has-text-left Category
-        .subtitle.is-size-5.has-text-left Home > Products
+        .subtitle.is-size-5.has-text-left Home > {{ categoryselect.name }}
         .columns.is-multiline
-            .column.is-3(v-for="product in products" v-if="categoryselect ? product.category.id == categoryselect ? true : false : true")
-                .card
+            .column.is-3(v-for="product in products")
+                .card(v-if="product.category.id == categoryselect.id ? true : false")
                     .card-image.boxprincipal(@click="DetailProduct(product.id)")
                         figure.image.is-square
                             img(:src='product.photo')
@@ -15,7 +15,7 @@
                             p.is-size-6 Precio: {{ product.price}}$
                         .columns.is-centered.is-vcentered.is-gapless
                             .column.is-5
-                                b-numberinput(:editable="false" :disabled="product.stock <= 0" v-model="selectedproduct[product.id]" controls-position="compact" min="0")
+                                b-numberinput( type="is-success" :editable="false" :disabled="product.stock <= 0" v-model="selectedproduct[product.id]" controls-position="compact" min="0")
                             .column
                                 b-button(v-if="product.stock > 0" icon-right="cart-plus" expanded @click="DetailProduct(product.id, selectedproduct[product.id])")
                                 .subtitle.is-size-6(v-else) No stock
@@ -47,7 +47,7 @@
                                             .column.is-5
                                                 p.subtitle.is-4 Cantidad: 
                                             .column.is-7
-                                                b-numberinput(v-model="detailproduct.selected" controls-position="compact" min="0")
+                                                b-numberinput( type="is-success" v-model="detailproduct.selected" controls-position="compact" min="0")
                                 .content
                                     b-field
                                         p.subtitle.is-4 Sub-total: {{ sumproduct(detailproduct.selected, detailproduct.product.price) }}
@@ -60,12 +60,8 @@
                                 b-button(type="dark" expanded @click="SetBolsa(detailproduct.product, detailproduct.selected)") Agregar al Carro
 </template>
 <script>
-import DetalledeproductoComponent from '@/components/Contenido/DetalledeproductoComponent.vue'
 import {  mapActions,mapState } from 'vuex'
 export default {
-    components: {
-        DetalledeproductoComponent,
-    },
     data() {
         return {
             ModalActive: false,

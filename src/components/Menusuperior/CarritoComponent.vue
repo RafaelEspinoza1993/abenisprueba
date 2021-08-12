@@ -16,7 +16,7 @@
                                 p.is-size-6 {{ item.product.name}}
                                 p.is-size-6 Precio: {{ item.product.price}}$
                         .column
-                            b-numberinput(v-model="item.stock" controls-position="compact" min="0")
+                            b-numberinput(type="is-success" v-model="item.stock" controls-position="compact" min="0")
                         .column
                             .subtitle.is-size-6 Sub-total: {{ item.product.price * item.stock}}$
                     .columns.is-multiline.is-centered.is-vcentered
@@ -64,7 +64,7 @@ export default {
         background-color: red;
         color: #fff;
         bottom: 0;
-        right: 10px;
+        right: -10px;
     }
 }
 </style>

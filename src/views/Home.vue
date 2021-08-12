@@ -1,19 +1,18 @@
 <template lang="pug">
   section#home
     b-loading(:is-full-page="true" v-model="loading" :can-cancel="false")
-    .columns.is-multiline.is-centered.is-vcentered.bord-bottom
-      .column.is-2.bord-right
+    .columns.is-multiline.is-centered.is-vcentered.menu
+      .column.is-2.container.is-fluid
         LogoComponent
-      .column.is-3.is-offset-6
+      .column.is-3.is-offset-6.container.is-fluid
         BusquedaComponent
-      .column.is-1
+      .column.is-1.container.is-fluid
         CarritoComponent
     .columns.is-multiline.is-centered
-      .column.bord-right.is-2
+      .column.is-2.container.is-fluid
         CategoriasComponent
-      .column.is-10
-        .container.is-fluid
-          ListadeproductosComponent
+      .column.is-10.container.is-fluid
+        ListadeproductosComponent
 </template>
 
 <script>
@@ -37,17 +36,16 @@ export default {
     ...mapState(["loading"]),
     ...mapActions(["getProduct", "getCategoryProduct"])
   },
-  mounted() {
+  created() {
       this.getProduct
       this.getCategoryProduct
   },
 }
 </script>
 <style lang="scss">
-  .bord-bottom{
-    border-bottom: 1px solid black;
+#home{
+  .menu{
+    background-color: #051923;;
   }
-  .bord-right{
-    border-right: 1px solid black;
-  }
+}
 </style>

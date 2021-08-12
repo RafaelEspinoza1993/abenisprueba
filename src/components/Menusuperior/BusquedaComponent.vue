@@ -1,39 +1,24 @@
 <template lang="pug">
     #BusquedaComponent
         section
-            b-field
-                b-autocomplete(rounded v-model='name' :data='filteredDataArray' placeholder='e.g. jQuery' icon='magnify' clearable @select='option => selected = option')
-                template(#empty) No results found
+            b-field(style="color: white;")
+                <p class="content"><b>Selected:</b> {{ selected }}</p>
+                b-autocomplete(rounded v-model='name' :data='filteredDataArray' placeholder='...' icon='magnify' clearable @select='option => selected = option')
 </template>
 <script>
+import { mapState } from 'vuex'
 export default {
     data() {
         return {
-            data: [
-                'Angular',
-                'Angular 2',
-                'Aurelia',
-                'Backbone',
-                'Ember',
-                'jQuery',
-                'Meteor',
-                'Node.js',
-                'Polymer',
-                'React',
-                'RxJS',
-                'Vue.js'
-            ],
             name: '',
             selected: null
         }
     },
     computed: {
+        ...mapState(["categorys"]),
         filteredDataArray() {
-            return this.data.filter((option) => {
-                return option
-                    .toString()
-                    .toLowerCase()
-                    .indexOf(this.name.toLowerCase()) >= 0
+            return this.categorys.filter((option) => {
+                return option.name.toString().toLowerCase().indexOf(this.name.toLowerCase()) >= 0
             })
         }
     }

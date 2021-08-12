@@ -1,6 +1,6 @@
 <template lang="pug">
     #CategoriasComponent
-        b-collapse.card(animation='slide' v-for='(category, index) of categorys' :key='index' :open='isOpen == index' @open='isOpen = index' )
+        b-collapse.card.cardedit(animation='slide' v-for='(category, index) of categorys' :key='index' :open='isOpen == index' @open='isOpen = index' )
             template(#trigger='props')
                 .card-header(role='button' @click='SelectCategory(category.id)')
                     p.card-header-title
@@ -27,3 +27,10 @@ export default {
     }
 }
 </script>
+<style lang="scss">
+    #CategoriasComponent{
+        .cardedit{
+            margin-bottom: 15px;
+        }
+    }
+</style>

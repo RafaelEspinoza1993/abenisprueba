@@ -25,6 +25,7 @@ export default new Vuex.Store({
     },
     setCategoryProduct(state, category){
       state.categorys = category
+      state.categoryselect = state.categorys.find(data => data.id == 1)
     },
     setLoading(state, loading){
       state.loading = loading
@@ -35,9 +36,7 @@ export default new Vuex.Store({
       state.detailproduct.selected = product.selected
     },
     setSelectCategory(state, category){
-      console.log(category);
-      let result = state.categorys.find(data => data.id == category)
-      console.log(result);
+      let result = state.categorys.find(data => data.id == category)      
       state.categoryselect = result
     },
     SetBolsa(state, selected){
