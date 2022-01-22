@@ -1,11 +1,14 @@
 {
+  "homepage":"https://rafaelespinoza1993.github.io/abenisprueba/",
   "name": "abenisprueba",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -b master -d build"
   },
   "dependencies": {
     "axios": "^0.21.1",
